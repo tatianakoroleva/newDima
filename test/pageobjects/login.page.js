@@ -10,6 +10,7 @@ class LoginPage extends Page {
     get inputUsername () { return $('#normal_login_email'); }
     get inputPassword () { return $('#normal_login_password'); }
     get buttonSubmit () { return $('.ant-btn'); }
+    get errorToast () { return $('.ant-notification-notice-message')}
 
     setLogin(email){
         this.inputUsername.setValue(email);
@@ -23,6 +24,12 @@ class LoginPage extends Page {
         this.buttonSubmit.click();
     }
 
+    submitButtonIsDisabled(){
+        expect(this.buttonSubmit).toBeDisabled();
+    }
+    errorToastAppeared(){
+        expect(this.errorToast).toBeDisplayed();
+    }
 
     /**
      * overwrite specifc options to adapt it to page object
