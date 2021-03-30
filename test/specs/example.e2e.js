@@ -17,11 +17,31 @@ describe('Auth', () => {
         LoginPage.submitButtonIsDisabled();
     });
 
-    it('fails if invalid data provided', () => {
+    it.skip('fails if invalid data provided', () => {
         LoginPage.setLogin('example@example.com');
         LoginPage.setPassword('hkjhkhkjdh');
         LoginPage.clickSubmitButton();
         LoginPage.errorToastAppeared();
+    });
+
+    it.skip('invalid password toast message', () => {
+       LoginPage.setLogin('mowas64100@astarmax.com');
+        LoginPage.setPassword('hkjhkhkjdh');
+        LoginPage.clickSubmitButton();
+        LoginPage.errorToastAppeared();
+    });
+
+    it.skip('invalid email error toast message', () => {
+        LoginPage.setLogin('example@example.com');
+        LoginPage.setPassword('t1875456');
+        LoginPage.clickSubmitButton();
+        LoginPage.errorToastAppeared();
+    });
+
+    it('login page is required', () => {
+        LoginPage.setLogin('example');
+        LoginPage.emptyLoginInput();
+        LoginPage.loginRequiredError();
     })
 
     afterEach(() => {

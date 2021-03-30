@@ -10,7 +10,8 @@ class LoginPage extends Page {
     get inputUsername () { return $('#normal_login_email'); }
     get inputPassword () { return $('#normal_login_password'); }
     get buttonSubmit () { return $('.ant-btn'); }
-    get errorToast () { return $('.ant-notification-notice-message')}
+    get errorToast () { return $('.ant-notification-notice-message');}
+    get loginValidatorError () { return $('//div[contains(@class,"ant-form-item-with-help")][.//input[@id="normal_login_email"]]//div[@role="alert"]');}
 
     setLogin(email){
         this.inputUsername.setValue(email);
@@ -27,8 +28,19 @@ class LoginPage extends Page {
     submitButtonIsDisabled(){
         expect(this.buttonSubmit).toBeDisabled();
     }
+
     errorToastAppeared(){
         expect(this.errorToast).toBeDisplayed();
+    }
+
+    emptyLoginInput(){
+        this.clearInput(this.inputUsername);
+    }
+
+
+    loginRequiredError(){
+        expect(this.loginValidatorError).toBeDisplayed();
+        expect(this.loginValidatorError.getText()).toEqual('Required');
     }
 
     /**
